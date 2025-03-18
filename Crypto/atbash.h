@@ -1,9 +1,9 @@
-#ifndef ATBASH_H
+п»ї#ifndef ATBASH_H
 #define ATBASH_H
 
 #include <string>
 
-// Функция для шифрования и дешифрования текста
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ Рё РґРµС€РёС„СЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°
 std::string atbashCipher(const std::string& text);
 
 #endif // ATBASH_H

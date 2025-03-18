@@ -1,10 +1,10 @@
-// caesar.h
+п»ї// caesar.h
 #ifndef CAESAR_H
 #define CAESAR_H
 
 #include <string>
 
-// Функция для шифрования и дешифрования текста
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ Рё РґРµС€РёС„СЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°
 std::string caesarCipher(const std::string& text, int shift);
 
 #endif // CAESAR_H

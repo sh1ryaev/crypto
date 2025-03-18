@@ -1,13 +1,13 @@
-// vigenere.h
+п»ї// vigenere.h
 #ifndef VIGENERE_H
 #define VIGENERE_H
 
 #include <string>
 
-// Функция для шифрования текста
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°
 std::string vigenereEncrypt(const std::string& text, const std::string& key);
 
-// Функция для дешифрования текста
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РґРµС€РёС„СЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°
 std::string vigenereDecrypt(const std::string& text, const std::string& key);
 
 #endif // VIGENERE_H

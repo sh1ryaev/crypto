@@ -6,7 +6,6 @@
 // Вспомогательная функция для применения сдвига к символу
 char applyShift(char ch, int shift, const std::string& alphabet) {
     if (isalpha(ch)) {  // Шифруем только латинские буквы
-        char base = islower(ch) ? 'a' : 'A';  // Определяем регистр
         // Находим индекс символа в алфавите
         size_t index = alphabet.find(tolower(ch));
         if (index != std::string::npos) {  // Если символ найден в алфавите

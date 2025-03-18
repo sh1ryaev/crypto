@@ -1,27 +1,27 @@
-#include "atbash.h"
+п»ї#include "atbash.h"
 #include "alphabet.h"
-#include <cctype>  // Для isalpha, toupper, tolower
+#include <cctype>  // Р”Р»СЏ isalpha, toupper, tolower
 
 std::string atbashCipher(const std::string& text) {
     std::string result = "";
 
     for (char ch : text) {
-        if (isalpha(ch)) {  // Шифруем только буквы
-            // Приводим символ к нижнему регистру для поиска в алфавите
+        if (isalpha(ch)) {  // РЁРёС„СЂСѓРµРј С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹
+            // РџСЂРёРІРѕРґРёРј СЃРёРјРІРѕР» Рє РЅРёР¶РЅРµРјСѓ СЂРµРіРёСЃС‚СЂСѓ РґР»СЏ РїРѕРёСЃРєР° РІ Р°Р»С„Р°РІРёС‚Рµ
             char lowerCh = tolower(ch);
-            // Находим индекс символа в алфавите
+            // РќР°С…РѕРґРёРј РёРЅРґРµРєСЃ СЃРёРјРІРѕР»Р° РІ Р°Р»С„Р°РІРёС‚Рµ
             size_t index = LATIN_ALPHABET.find(lowerCh);
-            if (index != std::string::npos) {  // Если символ найден в алфавите
-                // Вычисляем симметричный индекс
+            if (index != std::string::npos) {  // Р•СЃР»Рё СЃРёРјРІРѕР» РЅР°Р№РґРµРЅ РІ Р°Р»С„Р°РІРёС‚Рµ
+                // Р’С‹С‡РёСЃР»СЏРµРј СЃРёРјРјРµС‚СЂРёС‡РЅС‹Р№ РёРЅРґРµРєСЃ
                 size_t newIndex = LATIN_ALPHABET.size() - 1 - index;
-                // Получаем новый символ
+                // РџРѕР»СѓС‡Р°РµРј РЅРѕРІС‹Р№ СЃРёРјРІРѕР»
                 char newChar = LATIN_ALPHABET[newIndex];
-                // Сохраняем регистр
+                // РЎРѕС…СЂР°РЅСЏРµРј СЂРµРіРёСЃС‚СЂ
                 result += (isupper(ch) ? toupper(newChar) : newChar);
             }
         }
         else {
-            result += ch;  // Оставляем не-буквы без изменений
+            result += ch;  // РћСЃС‚Р°РІР»СЏРµРј РЅРµ-Р±СѓРєРІС‹ Р±РµР· РёР·РјРµРЅРµРЅРёР№
         }
     }
 

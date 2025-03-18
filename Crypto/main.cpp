@@ -119,11 +119,11 @@ void testExtendedGCD() {
 
 int main()
 {
-    //runCaesarTests();
+    runCaesarTests();
 
-    //runVigenereTests();
+    runVigenereTests();
 
-    //runAtbashTests();
+    runAtbashTests();
 
     testExtendedGCD();
 

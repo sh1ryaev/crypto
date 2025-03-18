@@ -1,28 +1,28 @@
-// caesar.cpp
+п»ї// caesar.cpp
 #include "caesar.h"
 #include "alphabet.h"
-#include <cctype>  // Для isalpha, islower, toupper, tolower
+#include <cctype>  // Р”Р»СЏ isalpha, islower, toupper, tolower
 
-// Функция для шифрования и дешифрования текста
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ Рё РґРµС€РёС„СЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°
 
 std::string caesarCipher(const std::string& text, int shift) {
     std::string result = "";
 
     for (char ch : text) {
-        if (isalpha(ch)) {  // Шифруем только латинские буквы
-            // Находим индекс символа в алфавите
+        if (isalpha(ch)) {  // РЁРёС„СЂСѓРµРј С‚РѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹
+            // РќР°С…РѕРґРёРј РёРЅРґРµРєСЃ СЃРёРјРІРѕР»Р° РІ Р°Р»С„Р°РІРёС‚Рµ
             size_t index = LATIN_ALPHABET.find(tolower(ch));
-            if (index != std::string::npos) {  // Если символ найден в алфавите
-                // Вычисляем новый индекс с учетом сдвига
+            if (index != std::string::npos) {  // Р•СЃР»Рё СЃРёРјРІРѕР» РЅР°Р№РґРµРЅ РІ Р°Р»С„Р°РІРёС‚Рµ
+                // Р’С‹С‡РёСЃР»СЏРµРј РЅРѕРІС‹Р№ РёРЅРґРµРєСЃ СЃ СѓС‡РµС‚РѕРј СЃРґРІРёРіР°
                 size_t newIndex = (index + shift + LATIN_ALPHABET.size()) % LATIN_ALPHABET.size();
-                // Получаем новый символ
+                // РџРѕР»СѓС‡Р°РµРј РЅРѕРІС‹Р№ СЃРёРјРІРѕР»
                 char newChar = LATIN_ALPHABET[newIndex];
-                // Сохраняем регистр
+                // РЎРѕС…СЂР°РЅСЏРµРј СЂРµРіРёСЃС‚СЂ
                 result += (isupper(ch) ? toupper(newChar) : newChar);
             }
         }
         else {
-            result += ch;  // Оставляем не-буквы без изменений
+            result += ch;  // РћСЃС‚Р°РІР»СЏРµРј РЅРµ-Р±СѓРєРІС‹ Р±РµР· РёР·РјРµРЅРµРЅРёР№
         }
     }
 
