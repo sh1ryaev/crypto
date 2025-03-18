@@ -1,65 +1,65 @@
-// vigenere.cpp
+п»ї// vigenere.cpp
 #include "vigenere.h"
 #include "alphabet.h"
-#include <cctype>  // Для isalpha, islower, toupper, tolower
+#include <cctype>  // Р”Р»СЏ isalpha, islower, toupper, tolower
 
-// Вспомогательная функция для применения сдвига к символу
+// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРёРјРµРЅРµРЅРёСЏ СЃРґРІРёРіР° Рє СЃРёРјРІРѕР»Сѓ
 char applyShift(char ch, int shift, const std::string& alphabet) {
-    if (isalpha(ch)) {  // Шифруем только латинские буквы
-        // Находим индекс символа в алфавите
+    if (isalpha(ch)) {  // РЁРёС„СЂСѓРµРј С‚РѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹
+        // РќР°С…РѕРґРёРј РёРЅРґРµРєСЃ СЃРёРјРІРѕР»Р° РІ Р°Р»С„Р°РІРёС‚Рµ
         size_t index = alphabet.find(tolower(ch));
-        if (index != std::string::npos) {  // Если символ найден в алфавите
-            // Вычисляем новый индекс с учетом сдвига
+        if (index != std::string::npos) {  // Р•СЃР»Рё СЃРёРјРІРѕР» РЅР°Р№РґРµРЅ РІ Р°Р»С„Р°РІРёС‚Рµ
+            // Р’С‹С‡РёСЃР»СЏРµРј РЅРѕРІС‹Р№ РёРЅРґРµРєСЃ СЃ СѓС‡РµС‚РѕРј СЃРґРІРёРіР°
             size_t newIndex = (index + shift + alphabet.size()) % alphabet.size();
-            // Получаем новый символ
+            // РџРѕР»СѓС‡Р°РµРј РЅРѕРІС‹Р№ СЃРёРјРІРѕР»
             char newChar = alphabet[newIndex];
-            // Сохраняем регистр
+            // РЎРѕС…СЂР°РЅСЏРµРј СЂРµРіРёСЃС‚СЂ
             return (isupper(ch) ? toupper(newChar) : newChar);
         }
     }
-    return ch;  // Оставляем не-буквы без изменений
+    return ch;  // РћСЃС‚Р°РІР»СЏРµРј РЅРµ-Р±СѓРєРІС‹ Р±РµР· РёР·РјРµРЅРµРЅРёР№
 }
 
-// Шифрование текста
+// РЁРёС„СЂРѕРІР°РЅРёРµ С‚РµРєСЃС‚Р°
 std::string vigenereEncrypt(const std::string& text, const std::string& key) {
     std::string result = "";
     size_t keyIndex = 0;
 
     for (char ch : text) {
-        if (isalpha(ch)) {  // Шифруем только латинские буквы
-            // Получаем символ ключа (в нижнем регистре)
+        if (isalpha(ch)) {  // РЁРёС„СЂСѓРµРј С‚РѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹
+            // РџРѕР»СѓС‡Р°РµРј СЃРёРјРІРѕР» РєР»СЋС‡Р° (РІ РЅРёР¶РЅРµРј СЂРµРіРёСЃС‚СЂРµ)
             char keyChar = tolower(key[keyIndex % key.size()]);
-            // Находим индекс символа ключа в алфавите
+            // РќР°С…РѕРґРёРј РёРЅРґРµРєСЃ СЃРёРјРІРѕР»Р° РєР»СЋС‡Р° РІ Р°Р»С„Р°РІРёС‚Рµ
             size_t keyShift = LATIN_ALPHABET.find(keyChar);
-            // Применяем сдвиг
+            // РџСЂРёРјРµРЅСЏРµРј СЃРґРІРёРі
             result += applyShift(ch, keyShift, LATIN_ALPHABET);
             keyIndex++;
         }
         else {
-            result += ch;  // Оставляем не-буквы без изменений
+            result += ch;  // РћСЃС‚Р°РІР»СЏРµРј РЅРµ-Р±СѓРєРІС‹ Р±РµР· РёР·РјРµРЅРµРЅРёР№
         }
     }
 
     return result;
 }
 
-// Дешифрование текста
+// Р”РµС€РёС„СЂРѕРІР°РЅРёРµ С‚РµРєСЃС‚Р°
 std::string vigenereDecrypt(const std::string& text, const std::string& key) {
     std::string result = "";
     size_t keyIndex = 0;
 
     for (char ch : text) {
-        if (isalpha(ch)) {  // Шифруем только латинские буквы
-            // Получаем символ ключа (в нижнем регистре)
+        if (isalpha(ch)) {  // РЁРёС„СЂСѓРµРј С‚РѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹
+            // РџРѕР»СѓС‡Р°РµРј СЃРёРјРІРѕР» РєР»СЋС‡Р° (РІ РЅРёР¶РЅРµРј СЂРµРіРёСЃС‚СЂРµ)
             char keyChar = tolower(key[keyIndex % key.size()]);
-            // Находим индекс символа ключа в алфавите
+            // РќР°С…РѕРґРёРј РёРЅРґРµРєСЃ СЃРёРјРІРѕР»Р° РєР»СЋС‡Р° РІ Р°Р»С„Р°РІРёС‚Рµ
             size_t keyShift = LATIN_ALPHABET.find(keyChar);
-            // Применяем обратный сдвиг
+            // РџСЂРёРјРµРЅСЏРµРј РѕР±СЂР°С‚РЅС‹Р№ СЃРґРІРёРі
             result += applyShift(ch, -static_cast<int>(keyShift), LATIN_ALPHABET);
             keyIndex++;
         }
         else {
-            result += ch;  // Оставляем не-буквы без изменений
+            result += ch;  // РћСЃС‚Р°РІР»СЏРµРј РЅРµ-Р±СѓРєРІС‹ Р±РµР· РёР·РјРµРЅРµРЅРёР№
         }
     }
 
